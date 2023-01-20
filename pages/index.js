@@ -1,20 +1,18 @@
-import {getFeaturedEvents} from "../dummy-data";
 import EventList from "../components/EventList/EventList";
+import {getFeaturedEvents} from "../api/getFeaturedEvents";
 
 const HomePage = ({events}) => {
-    const featuredEvents = getFeaturedEvents(events)
     return (
         <div>
-            <EventList events={featuredEvents}/>
+            <EventList events={events}/>
         </div>
     );
 };
 
 
 export async  function getStaticProps() {
-    const response = await fetch('https://next-js-bca96-default-rtdb.firebaseio.com/events.json')
-    const data = response.json()
-    return {props: {events: data}}
+   const data = await getFeaturedEvents()
+    return {props: {events: data}, revalidate: 1800}
 }
 
 export default HomePage;
