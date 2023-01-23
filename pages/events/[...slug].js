@@ -4,6 +4,7 @@ import ResultsTitle from "../../components/event-detail/results-title";
 import Button from "../../shared/Button/Button";
 import ErrorAlert from "../../shared/ErrorAlert/ErrorAlert";
 import {getFilteredEvents} from "../../api/getFilteredEvents";
+import Head from "next/head";
 
 const SpecificDateEvent = ({filteredEvents, date}) => {
     // const {query} =  useRouter()
@@ -23,7 +24,6 @@ const SpecificDateEvent = ({filteredEvents, date}) => {
     //         </div>
     //     </>
     // }
-    console.log({filteredEvents})
     if(!filteredEvents || !filteredEvents.length){
         return <>
             <ErrorAlert>No events was found for the chosen filters</ErrorAlert>
@@ -35,10 +35,14 @@ const SpecificDateEvent = ({filteredEvents, date}) => {
 
     const formattedDate = new Date(date.year, date.month)
     return (
-        <div>
+        <>
+            <Head>
+                <title>Filtered Events</title>
+                <meta name="description" content={`All events for ${date.month}/${date.year}`} />
+            </Head>
             <ResultsTitle date={formattedDate}/>
             <EventList events={filteredEvents}/>
-        </div>
+        </>
     );
 };
 

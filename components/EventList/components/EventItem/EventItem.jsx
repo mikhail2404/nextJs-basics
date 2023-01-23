@@ -3,6 +3,7 @@ import Button from "../../../../shared/Button/Button";
 import DateIcon from "../../../../shared/DateIcon/DateIcon";
 import AddressIcon from "../../../../shared/AddressIcon/AddressIcon";
 import ArrowRightIcon from "../../../../shared/ArrowRightIcon/ArrowRightIcon";
+import Image from "next/image";
 const EventItem = ({image, title, date, location, id}) => {
 
     const formattedDate = new Date(date).toLocaleDateString('en-US', {
@@ -15,7 +16,7 @@ const EventItem = ({image, title, date, location, id}) => {
 
     return (
         <li className={styles.item}>
-            <img src={`/${image}`} alt={title}/>
+            <Image src={`/${image}`} alt={title} width={250} height={160}/>
             <div className={styles.content}>
                 <div>
                     <h2>{title}</h2>

@@ -3,8 +3,9 @@ import EventLogistics from "../../components/event-detail/event-logistics";
 import EventContent from "../../components/event-detail/event-content";
 import {getEvent} from "../../api/getEvent";
 import {getFeaturedEvents} from "../../api/getFeaturedEvents";
+import Head from "next/head";
 
-const EventPage = ({event}) => {
+const EventPage = ({event }) => {
 
 
     if (!event) {
@@ -12,6 +13,10 @@ const EventPage = ({event}) => {
     }
     return (
         <>
+            <Head>
+                <title>{event.title}</title>
+                <meta name="description" content={event.description} />
+            </Head>
             <EventSummary title={event.title}/>
             <EventLogistics image={event.image}
                             imageAlt={event.title}
