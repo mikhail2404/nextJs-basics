@@ -4,9 +4,11 @@ import EventContent from "../../components/event-detail/event-content";
 import {getEvent} from "../../api/getEvent";
 import {getFeaturedEvents} from "../../api/getFeaturedEvents";
 import Head from "next/head";
+import Comments from "../../components/input/comments";
+import {useRouter} from "next/router";
 
 const EventPage = ({event }) => {
-
+    const {query} = useRouter()
 
     if (!event) {
         return <p className="center">Loading</p>
@@ -25,6 +27,7 @@ const EventPage = ({event }) => {
             <EventContent>
                 <p>{event.description}</p>
             </EventContent>
+            <Comments eventId={query.eventId}/>
         </>
     );
 };
